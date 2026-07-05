@@ -1,4 +1,4 @@
-// 获取系统颜色偏好
+﻿// 获取系统颜色偏好
 function getSystemTheme() {
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }

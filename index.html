@@ -1,24 +1,482 @@
-<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="zh-CN">
-
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML颜色架构示例</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Modern Color Layout Demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="css/modern-color-layout.css?v=9" rel="stylesheet">
 </head>
-
 <body>
-    <div id="theme-selector">
-        <button onclick="setTheme('auto')">自动</button>
-        <button onclick="setTheme('light')">浅色</button>
-        <button onclick="setTheme('dark')">深色</button>
-    </div>
-    <div>
-        <div>测试</div>
-        <div class="test">测试</div>
-    </div>
-    <script src="js/main.js"></script>
-</body>
+    <div id="content">
+        <div class="theme-toggle-group">
+            <button class="theme-btn" data-theme="light" title="亮色模式" type="button">
+                <i class="bi bi-sun"></i>
+            </button>
+            <button class="theme-btn" data-theme="dark" title="暗色模式" type="button">
+                <i class="bi bi-moon"></i>
+            </button>
+            <button class="theme-btn" data-theme="auto" title="自动模式" type="button">
+                <i class="bi bi-circle-half"></i>
+            </button>
+        </div>
 
+        <button id="toggle-menu" class="btn btn-primary" type="button" aria-label="打开菜单">
+            <i class="bi bi-list"></i>
+        </button>
+
+        <div class="content-wrapper">
+            <nav id="menu" aria-label="主菜单">
+                <div class="menu-header">
+                    <h3>实例页面</h3>
+                    <div class="text-secondary">现代色彩功能布局</div>
+                </div>
+                <a href="#overview" class="menu-item active">
+                    <i class="bi bi-house-door"></i>布局概览
+                </a>
+                <a href="#forms" class="menu-item">
+                    <i class="bi bi-input-cursor"></i>表单控件
+                </a>
+                <a href="#tabs" class="menu-item">
+                    <i class="bi bi-collection"></i>标签页
+                </a>
+                <a href="#buttons" class="menu-item">
+                    <i class="bi bi-ui-checks-grid"></i>按钮控件
+                </a>
+                <a href="#components" class="menu-item">
+                    <i class="bi bi-grid-3x3-gap"></i>组件状态
+                </a>
+                <a href="#data" class="menu-item">
+                    <i class="bi bi-table"></i>数据展示
+                </a>
+                <hr>
+                <a href="javascript:void(0);" class="menu-item">
+                    <i class="bi bi-box-arrow-right"></i>退出登录
+                </a>
+                <hr>
+                <div class="theme-menu-buttons">
+                    <button class="theme-menu-btn" data-theme="light" title="亮色模式" type="button">
+                        <i class="bi bi-sun"></i>
+                    </button>
+                    <button class="theme-menu-btn" data-theme="dark" title="暗色模式" type="button">
+                        <i class="bi bi-moon"></i>
+                    </button>
+                    <button class="theme-menu-btn" data-theme="auto" title="自动模式" type="button">
+                        <i class="bi bi-circle-half"></i>
+                    </button>
+                </div>
+            </nav>
+
+            <main class="content-main">
+                <header id="overview" class="content-header">
+                    <h1>现代色彩功能布局文档</h1>
+                    <p class="text-secondary mt-2">Simple Modern Layout System - 现代色彩功能布局</p>
+                </header>
+
+                <section class="row">
+                    <div class="col-md-6 pb-3">
+                        <div class="card p-3" style="--animation-order: 1;">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="mb-3 b text-gradient">独立文件结构</div>
+                                <i class="bi bi-folder2-open text-primary"></i>
+                            </div>
+                            <p class="text-secondary">这个独立版本只需要复制三个核心文件：</p>
+                            <ol class="text-secondary">
+                                <li><strong>index.html</strong> - 页面结构和示例内容</li>
+                                <li><strong>css/modern-color-layout.css</strong> - 主题、布局和控件样式</li>
+                                <li><strong>js/modern-color-layout.js</strong> - 主题切换、移动菜单交互</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 pb-3">
+                        <div class="card p-3" style="--animation-order: 2;">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="mb-3 b text-gradient">主题能力</div>
+                                <i class="bi bi-palette2 text-primary"></i>
+                            </div>
+                            <p class="text-secondary">布局使用 CSS 变量驱动颜色，支持亮色、暗色和自动模式。</p>
+                            <div class="row g-3">
+                                <div class="col-4">
+                                    <div class="text-center p-3 border rounded">
+                                        <i class="bi bi-sun text-warning" style="font-size: 1.5rem;"></i>
+                                        <h6 class="mt-2">亮色</h6>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="text-center p-3 border rounded">
+                                        <i class="bi bi-moon text-info" style="font-size: 1.5rem;"></i>
+                                        <h6 class="mt-2">暗色</h6>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="text-center p-3 border rounded">
+                                        <i class="bi bi-circle-half text-success" style="font-size: 1.5rem;"></i>
+                                        <h6 class="mt-2">自动</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="forms" class="pb-3">
+                    <div class="card p-3" style="--animation-order: 3;">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="mb-3 b text-gradient">表单控件状态</div>
+                            <i class="bi bi-input-cursor text-primary"></i>
+                        </div>
+                        <p class="text-secondary">覆盖文本、选择、日期、文件、范围、校验、只读和禁用状态，作为主题回归测试样板。</p>
+                        <div class="row g-3">
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="textInput" class="form-label">文本输入框</label>
+                                    <input type="text" class="form-control" id="textInput" placeholder="请输入文本内容">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="emailInput" class="form-label">邮箱输入框</label>
+                                    <input type="email" class="form-control" id="emailInput" placeholder="example@domain.com">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="readonlyInput" class="form-label">只读输入框</label>
+                                    <input type="text" class="form-control" id="readonlyInput" value="只读内容仍需清晰可读" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="disabledInput" class="form-label">禁用输入框</label>
+                                    <input type="text" class="form-control" id="disabledInput" value="当前不可编辑" disabled>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="validInput" class="form-label">成功校验</label>
+                                    <input type="text" class="form-control is-valid" id="validInput" value="格式正确">
+                                    <div class="valid-feedback">校验通过。</div>
+                                </div>
+                                <div>
+                                    <label for="invalidInput" class="form-label">错误校验</label>
+                                    <input type="text" class="form-control is-invalid" id="invalidInput" value="格式错误">
+                                    <div class="invalid-feedback">请检查输入内容。</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="textareaInput" class="form-label">多行文本</label>
+                                    <textarea class="form-control" id="textareaInput" rows="3" placeholder="请输入多行文本内容"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="selectInput" class="form-label">下拉选择框</label>
+                                    <select class="form-select" id="selectInput">
+                                        <option value="">请选择选项</option>
+                                        <option value="1">选项一</option>
+                                        <option value="2">选项二</option>
+                                        <option value="3">选项三</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="selectDisabled" class="form-label">禁用下拉框</label>
+                                    <select class="form-select" id="selectDisabled" disabled>
+                                        <option>不可选择</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">搜索框</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                        <input type="text" class="form-control" placeholder="搜索内容...">
+                                        <button class="btn btn-primary" type="button">
+                                            搜索
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col-sm-6">
+                                        <label for="dateInput" class="form-label">日期</label>
+                                        <input type="date" class="form-control" id="dateInput" value="2026-07-06">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="timeInput" class="form-label">时间</label>
+                                        <input type="time" class="form-control" id="timeInput" value="09:30">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="control-panel h-100">
+                                    <h6 class="text-primary mb-3">选择控件</h6>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="checkboxDefault">
+                                        <label class="form-check-label" for="checkboxDefault">普通复选框</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="checkboxChecked" checked>
+                                        <label class="form-check-label" for="checkboxChecked">已选复选框</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="checkboxDisabled" disabled>
+                                        <label class="form-check-label" for="checkboxDisabled">禁用复选框</label>
+                                    </div>
+                                    <div class="form-check form-switch mb-2">
+                                        <input class="form-check-input" type="checkbox" id="switch1" checked>
+                                        <label class="form-check-label" for="switch1">启用开关</label>
+                                    </div>
+                                    <div class="form-check form-switch mb-3">
+                                        <input class="form-check-input" type="checkbox" id="switchDisabled" checked disabled>
+                                        <label class="form-check-label" for="switchDisabled">禁用开关</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="radioDemo" id="radioDefault">
+                                        <label class="form-check-label" for="radioDefault">单选未选</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="radioDemo" id="radioChecked" checked>
+                                        <label class="form-check-label" for="radioChecked">单选已选</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="radioDisabled" id="radioDisabled" disabled>
+                                        <label class="form-check-label" for="radioDisabled">禁用单选</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="control-panel h-100">
+                                    <h6 class="text-primary mb-3">文件、范围和颜色</h6>
+                                    <div class="mb-3">
+                                        <label for="fileInput" class="form-label">文件上传</label>
+                                        <input class="form-control" type="file" id="fileInput">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="fileDisabled" class="form-label">禁用文件上传</label>
+                                        <input class="form-control" type="file" id="fileDisabled" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="rangeInput" class="form-label">范围滑块</label>
+                                        <input type="range" class="form-range" id="rangeInput" min="0" max="100" value="65">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="rangeDisabled" class="form-label">禁用范围滑块</label>
+                                        <input type="range" class="form-range" id="rangeDisabled" min="0" max="100" value="35" disabled>
+                                    </div>
+                                    <label for="colorInput" class="form-label">颜色选择</label>
+                                    <input type="color" class="form-control form-control-color" id="colorInput" value="#0d6efd" title="选择颜色">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="tabs" class="pb-3">
+                    <div class="card p-3" style="--animation-order: 4;">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="mb-3 b text-gradient">标签页演示</div>
+                            <i class="bi bi-collection text-primary"></i>
+                        </div>
+                        <ul class="nav nav-tabs" id="demoTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-home" type="button" role="tab">
+                                    <i class="bi bi-house-door me-2"></i>首页
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-settings" type="button" role="tab">
+                                    <i class="bi bi-gear me-2"></i>设置
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-about" type="button" role="tab">
+                                    <i class="bi bi-info-circle me-2"></i>关于
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-disabled" type="button" role="tab" disabled>
+                                    <i class="bi bi-lock me-2"></i>禁用标签
+                                </button>
+                            </li>
+                        </ul>
+                        <div class="tab-content mt-3">
+                            <div class="tab-pane fade show active" id="tab-home" role="tabpanel">
+                                <div class="p-3">
+                                    <h5 class="text-primary">首页内容</h5>
+                                    <p class="text-secondary">这是第一个标签页的内容，可以放置主要功能和信息。</p>
+                                    <div class="alert alert-info">
+                                        <i class="bi bi-info-circle me-2"></i>这个提示框会跟随暗色主题调整颜色。
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="tab-settings" role="tabpanel">
+                                <div class="p-3">
+                                    <h5 class="text-primary">设置页面</h5>
+                                    <div class="form-check form-switch mb-2">
+                                        <input class="form-check-input" type="checkbox" id="setting1" checked>
+                                        <label class="form-check-label" for="setting1">启用通知</label>
+                                    </div>
+                                    <div class="form-check form-switch mb-2">
+                                        <input class="form-check-input" type="checkbox" id="setting2">
+                                        <label class="form-check-label" for="setting2">调试模式</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="tab-about" role="tabpanel">
+                                <div class="p-3">
+                                    <h5 class="text-primary">关于页面</h5>
+                                    <p class="text-secondary">这个独立版来自 Silmoon 模板项目的 ModernColorDemo 布局。</p>
+                                    <div class="alert alert-success">
+                                        <i class="bi bi-check-circle me-2"></i>Bootstrap 组件可直接继续使用。
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="tab-disabled" role="tabpanel">
+                                <div class="p-3">
+                                    <h5 class="text-primary">禁用标签</h5>
+                                    <p class="text-secondary">这个标签不可进入，用于检查禁用态。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="buttons" class="pb-3">
+                    <div class="card p-3 glass-effect" style="--animation-order: 5;">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="mb-3 b text-gradient">按钮和菜单状态</div>
+                            <i class="bi bi-phone text-primary"></i>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-lg-7">
+                                <h6 class="text-primary mb-3">按钮控件</h6>
+                                <div class="control-row mb-3">
+                                    <button type="button" class="btn btn-primary">主要按钮</button>
+                                    <button type="button" class="btn btn-outline-primary">轮廓按钮</button>
+                                    <button type="button" class="btn btn-secondary">次要按钮</button>
+                                    <button type="button" class="btn btn-link">链接按钮</button>
+                                </div>
+                                <div class="control-row mb-3">
+                                    <button type="button" class="btn btn-success">成功</button>
+                                    <button type="button" class="btn btn-warning">警告</button>
+                                    <button type="button" class="btn btn-danger">危险</button>
+                                    <button type="button" class="btn btn-info">信息</button>
+                                </div>
+                                <div class="control-row mb-3">
+                                    <button type="button" class="btn btn-primary active">激活按钮</button>
+                                    <button type="button" class="btn btn-primary" disabled>禁用按钮</button>
+                                    <button type="button" class="btn btn-outline-primary" disabled>禁用轮廓</button>
+                                </div>
+                                <div class="btn-group mb-3" role="group" aria-label="按钮组">
+                                    <button type="button" class="btn btn-outline-primary active">左侧</button>
+                                    <button type="button" class="btn btn-outline-primary">中间</button>
+                                    <button type="button" class="btn btn-outline-primary">右侧</button>
+                                </div>
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        下拉菜单
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item active" href="#">当前操作</a></li>
+                                        <li><a class="dropdown-item" href="#">普通操作</a></li>
+                                        <li><a class="dropdown-item disabled" aria-disabled="true">禁用操作</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="#">更多操作</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <h6 class="text-primary mb-3">状态提示</h6>
+                                <div class="alert alert-info">
+                                    <i class="bi bi-info-circle"></i>
+                                    <strong>信息：</strong>普通提示需要在暗色主题下保持温和背景。
+                                </div>
+                                <div class="alert alert-warning">
+                                    <i class="bi bi-exclamation-triangle me-2"></i>警告提示也会保持可读对比度。
+                                </div>
+                                <div class="alert alert-danger mb-0">
+                                    <i class="bi bi-x-circle me-2"></i>错误提示文字不能被背景吞掉。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="components" class="pb-3">
+                    <div class="card p-3" style="--animation-order: 6;">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="mb-3 b text-gradient">组件状态集合</div>
+                            <i class="bi bi-grid-3x3-gap text-primary"></i>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-lg-6">
+                                <h6 class="text-primary mb-3">列表和分页</h6>
+                                <div class="list-group mb-3">
+                                    <a href="#" class="list-group-item list-group-item-action active">激活列表项</a>
+                                    <a href="#" class="list-group-item list-group-item-action">普通列表项</a>
+                                    <a href="#" class="list-group-item list-group-item-action disabled" aria-disabled="true">禁用列表项</a>
+                                </div>
+                                <nav aria-label="分页示例">
+                                    <ul class="pagination mb-0">
+                                        <li class="page-item disabled"><a class="page-link">上一页</a></li>
+                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">下一页</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="col-lg-6">
+                                <h6 class="text-primary mb-3">进度和徽章</h6>
+                                <div class="progress mb-3" role="progressbar" aria-label="进度条" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar" style="width: 65%;">65%</div>
+                                </div>
+                                <div class="progress mb-3" role="progressbar" aria-label="警告进度" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar bg-warning text-dark" style="width: 40%;">40%</div>
+                                </div>
+                                <div class="control-row">
+                                    <span class="badge bg-primary">Primary</span>
+                                    <span class="badge bg-success">Success</span>
+                                    <span class="badge bg-warning text-dark">Warning</span>
+                                    <span class="badge bg-danger">Danger</span>
+                                    <span class="badge text-bg-light">Light</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="data" class="pb-3">
+                    <div class="card p-3" style="--animation-order: 6;">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="mb-3 b text-gradient">表格状态演示</div>
+                            <i class="bi bi-table text-primary"></i>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover align-middle mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>控件</th>
+                                        <th>状态</th>
+                                        <th>说明</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>表单控件</td>
+                                        <td><span class="badge bg-success">正常</span></td>
+                                        <td class="text-secondary">默认、悬停、焦点状态使用统一变量。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>按钮</td>
+                                        <td><span class="badge bg-primary">可交互</span></td>
+                                        <td class="text-secondary">禁用态不会保留高亮背景。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>卡片</td>
+                                        <td><span class="badge text-bg-light">容器</span></td>
+                                        <td class="text-secondary">标题、正文、列表、强调文字都跟随主题。</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/modern-color-layout.js?v=8"></script>
+</body>
 </html>
