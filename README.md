@@ -12,7 +12,8 @@ HtmlColorScheme/
 ├─ index.html
 ├─ colorDemo.html
 ├─ css/
-│  └─ modern-color-layout.css
+│  ├─ modern-color-layout.css
+│  └─ style.css
 ├─ js/
 │  ├─ modern-color-layout.js
 │  └─ script.js
@@ -24,9 +25,9 @@ HtmlColorScheme/
 
 - `index.html`：现代颜色布局主入口，包含完整布局和控件状态示例。
 - `css/modern-color-layout.css`：主题变量、布局、Bootstrap 常用控件适配。
-- `js/modern-color-layout.js`：亮色、暗色、自动主题切换和移动端菜单交互。
+- `js/modern-color-layout.js`：亮色、暗色、自动主题切换、移动端菜单交互和返回顶部按钮。
 
-`colorDemo.html` 和 `js/script.js` 是旧的轻量颜色切换示例，保留用于对照，不是这套现代布局的主要入口。
+`colorDemo.html`、`css/style.css` 和 `js/script.js` 是旧的轻量颜色切换示例，保留用于对照，不是这套现代布局的主要入口。
 
 ## 依赖
 
@@ -120,6 +121,8 @@ http://127.0.0.1:4173/
 
 移动端菜单内也可以放一组 `.theme-menu-btn`，脚本会自动同步状态。
 
+脚本会在移动端把 `#menu` 临时移动到 `document.body` 下，以确保菜单在页面滚动后仍然固定显示在菜单按钮下方；切回桌面断点时会自动恢复到 `.content-wrapper` 中。
+
 ## 主题模式
 
 主题按钮通过 `data-theme` 控制：
@@ -155,6 +158,9 @@ modern-color-layout-theme
 ```css
 :root {
     --primary-color: #0d6efd;
+    --menu-width: 220px;
+    --mobile-menu-top: 78px;
+    --mobile-edge-offset: 20px;
     --bg-primary: #ffffff;
     --bg-secondary: #f8f9fa;
     --bg-tertiary: rgba(255, 255, 255, 0.95);
@@ -174,6 +180,8 @@ modern-color-layout-theme
 常用变量含义：
 
 - `--primary-color`：主色，影响按钮、菜单激活态、标签页底线、选择控件选中态。
+- `--menu-width`：桌面侧边菜单宽度。
+- `--mobile-menu-top` / `--mobile-edge-offset`：移动端弹出菜单和菜单按钮的固定位置。
 - `--bg-primary` / `--bg-secondary` / `--bg-tertiary`：页面、次级区域和主容器背景。
 - `--text-primary` / `--text-secondary`：正文和辅助文字。
 - `--border-color` / `--border-light`：普通边框和玻璃容器边框。
@@ -213,6 +221,7 @@ modern-color-layout-theme
 - `.glass-effect`：玻璃背景效果。
 - `.control-panel`：用于把一组控件放进统一面板。
 - `.control-row`：横向按钮或徽章排列，自动换行。
+- `.back-to-top`：脚本自动创建的返回顶部按钮，滚动超过一屏后显示。
 
 ## 开发约定
 
@@ -222,6 +231,7 @@ modern-color-layout-theme
 4. 标签页激活态保持底部线条，不使用外框式 active。
 5. 禁用态应清晰可读，但不能保留高亮阴影。
 6. 新增控件时，同时在亮色、暗色、自动模式下检查默认、焦点、禁用、激活状态。
+7. `modern-color-layout.css` 和 `modern-color-layout.js` 是跨项目统一文件，同步回 ASP.NET 项目和模板项目时应保持内容一致。
 
 ## 回归检查清单
 
@@ -250,7 +260,14 @@ modern-color-layout-theme
   - active
   - disabled
 - 标签页 active 是否仍为底部线条。
-- 移动端菜单是否在视口内，页面是否无横向滚动。
+- 移动端菜单：
+  - 滚动页面后点击菜单按钮，菜单仍固定在按钮下方。
+  - 菜单和按钮之间保留适当间距。
+  - 首个菜单项可见，菜单内容不被滚动到上方。
+  - 页面无横向滚动。
+- 返回顶部按钮：
+  - 滚动超过一屏后显示。
+  - 点击后平滑回到页面顶部。
 
 ## 与模板项目的来源关系
 
