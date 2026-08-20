@@ -101,6 +101,16 @@ http://127.0.0.1:4173/
                 <div class="text-secondary">现代色彩功能布局</div>
             </div>
             <a href="#overview" class="menu-item active"><i class="bi bi-house-door"></i>布局概览</a>
+            <div class="menu-group">
+                <button class="menu-item menu-submenu-toggle" type="button">
+                    <span><i class="bi bi-ui-checks"></i>控件示例</span>
+                    <i class="bi bi-chevron-down menu-submenu-arrow"></i>
+                </button>
+                <div class="menu-submenu">
+                    <a href="#forms" class="menu-item"><i class="bi bi-input-cursor"></i>表单控件</a>
+                    <a href="#buttons" class="menu-item"><i class="bi bi-ui-checks-grid"></i>按钮控件</a>
+                </div>
+            </div>
         </nav>
 
         <main class="content-main">
@@ -122,6 +132,32 @@ http://127.0.0.1:4173/
 移动端菜单内也可以放一组 `.theme-menu-btn`，脚本会自动同步状态。
 
 脚本会在移动端把 `#menu` 临时移动到 `document.body` 下，以确保菜单在页面滚动后仍然固定显示在菜单按钮下方；切回桌面断点时会自动恢复到 `.content-wrapper` 中。
+
+## 子菜单
+
+菜单支持原生 HTML 子菜单结构，静态页、Razor Pages 和 Blazor 都使用同一套类名：
+
+- `.menu-group`：一个可展开菜单组。
+- `.menu-submenu-toggle`：展开按钮，必须同时带 `.menu-item`。
+- `.menu-submenu`：子菜单容器。
+- `.menu-submenu-arrow`：右侧箭头图标。
+
+示例：
+
+```html
+<div class="menu-group">
+    <button class="menu-item menu-submenu-toggle" type="button">
+        <span><i class="bi bi-folder"></i>系统管理</span>
+        <i class="bi bi-chevron-down menu-submenu-arrow"></i>
+    </button>
+    <div class="menu-submenu">
+        <a href="/users" class="menu-item"><i class="bi bi-people"></i>用户管理</a>
+        <a href="/roles" class="menu-item"><i class="bi bi-shield"></i>角色管理</a>
+    </div>
+</div>
+```
+
+脚本会自动补齐 `aria-controls`，维护 `aria-expanded`，并在子项带 `.active` 或 `aria-current="page"` 时自动展开父级子菜单。Blazor 中可直接把子项写成 `NavLink class="menu-item"`。
 
 ## 主题模式
 
@@ -264,6 +300,7 @@ modern-color-layout-theme
   - 滚动页面后点击菜单按钮，菜单仍固定在按钮下方。
   - 菜单和按钮之间保留适当间距。
   - 首个菜单项可见，菜单内容不被滚动到上方。
+  - 子菜单能展开、收起，active 子项所在父菜单会自动展开。
   - 页面无横向滚动。
 - 返回顶部按钮：
   - 滚动超过一屏后显示。
