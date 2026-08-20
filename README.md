@@ -17,6 +17,8 @@ HtmlColorScheme/
 ├─ js/
 │  ├─ modern-color-layout.js
 │  └─ script.js
+├─ .markdown/
+│  └─ modern-color-layout-static-agent-guide.md
 └─ tools/
    └─ static-server.js
 ```
@@ -28,6 +30,8 @@ HtmlColorScheme/
 - `js/modern-color-layout.js`：亮色、暗色、自动主题切换、移动端菜单交互和返回顶部按钮。
 
 `colorDemo.html`、`css/style.css` 和 `js/script.js` 是旧的轻量颜色切换示例，保留用于对照，不是这套现代布局的主要入口。
+
+`.markdown/modern-color-layout-static-agent-guide.md` 是给 Codex 或其他 AI Agent 使用的维护说明，包含静态模板结构、修改边界和回归检查方法。
 
 ## 依赖
 
@@ -306,13 +310,9 @@ modern-color-layout-theme
   - 滚动超过一屏后显示。
   - 点击后平滑回到页面顶部。
 
-## 与模板项目的来源关系
+## 来源关系
 
-最初提取来源：
-
-```text
-D:\Git\GitHub\silmoonsone\Silmoon.Templates\Silmoon.Templates\content\Silmoon.AspNetCore.FullFunctionTemplate
-```
+这套静态模板最初从 `Silmoon.AspNetCore.FullFunctionTemplate` 模板中的现代颜色布局演示提取而来，之后作为独立静态模板继续维护。
 
 源文件映射：
 
