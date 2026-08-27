@@ -27,7 +27,7 @@ HtmlColorScheme/
 
 - `index.html`：现代颜色布局主入口，包含完整布局和控件状态示例。
 - `css/modern-color-layout.css`：主题变量、布局、Bootstrap 常用控件适配。
-- `js/modern-color-layout.js`：亮色、暗色、自动主题切换、移动端菜单交互和返回顶部按钮。
+- `js/modern-color-layout.js`：亮色、暗色、自动主题切换、移动端菜单交互、返回顶部按钮，以及面向动态 DOM 的可重复刷新能力。
 
 `colorDemo.html`、`css/style.css` 和 `js/script.js` 是旧的轻量颜色切换示例，保留用于对照，不是这套现代布局的主要入口。
 
@@ -163,6 +163,18 @@ http://127.0.0.1:4173/
 
 脚本会自动补齐 `aria-controls`，维护 `aria-expanded`，并在子项带 `.active` 或 `aria-current="page"` 时自动展开父级子菜单。Blazor 中可直接把子项写成 `NavLink class="menu-item"`。
 
+## 动态 DOM 刷新
+
+本次新增公开方法：
+
+```javascript
+window.ModernColorLayout.refresh();
+```
+
+普通静态页面会在首次加载时自动执行，不需要手动调用。只有页面使用局部导航、模板替换或其他动态 DOM 更新方式时，才需要在新内容写入页面后调用 `refresh()`。
+
+`refresh()` 可以重复调用：它会扫描新出现的菜单、子菜单和主题按钮，同时通过初始化标记避免已有元素重复绑定。具体前端框架的生命周期监听应放在该框架自己的适配脚本中，由适配脚本调用 `refresh()`；不要把框架名称或全局对象写入通用核心脚本。
+
 ## 主题模式
 
 主题按钮通过 `data-theme` 控制：
@@ -272,6 +284,7 @@ modern-color-layout-theme
 5. 禁用态应清晰可读，但不能保留高亮阴影。
 6. 新增控件时，同时在亮色、暗色、自动模式下检查默认、焦点、禁用、激活状态。
 7. `modern-color-layout.css` 和 `modern-color-layout.js` 是跨项目统一文件，同步回 ASP.NET 项目和模板项目时应保持内容一致。
+8. 动态页面框架通过独立适配脚本调用 `ModernColorLayout.refresh()`，不要让通用核心直接依赖某个框架。
 
 ## 回归检查清单
 
@@ -309,6 +322,7 @@ modern-color-layout-theme
 - 返回顶部按钮：
   - 滚动超过一屏后显示。
   - 点击后平滑回到页面顶部。
+- 动态替换菜单或正文后调用 `ModernColorLayout.refresh()`，新元素交互有效且已有元素不会重复响应。
 
 ## 来源关系
 

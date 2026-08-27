@@ -22,7 +22,7 @@
 - `index.html`：主模板页面，展示现代颜色布局、菜单、控件、子菜单、表格和状态组件。
 - `colorDemo.html`：颜色切换或颜色方案的辅助示例页，属于次要 demo。
 - `css/modern-color-layout.css`：现代颜色布局的核心样式，包含主题变量、页面布局、菜单、控件状态、表格、响应式和移动端菜单样式。
-- `js/modern-color-layout.js`：现代颜色布局的核心脚本，包含主题切换、移动端菜单定位、菜单激活、子菜单展开、重复初始化保护。
+- `js/modern-color-layout.js`：现代颜色布局的核心脚本，包含主题切换、移动端菜单定位、菜单激活、子菜单展开、重复初始化保护和可重复调用的 `ModernColorLayout.refresh()`。
 - `css/style.css`：当前静态 demo 自己的页面样式。不要把只能服务 demo 的样式混入核心样式。
 - `js/script.js`：当前静态 demo 自己的脚本。不要把只能服务 demo 的行为混入核心脚本。
 - `tools/static-server.js`：本地静态开发服务器脚本。
@@ -36,6 +36,7 @@
 - 颜色变量和主题切换。
 - 页面骨架布局。
 - 主菜单、子菜单和移动端菜单。
+- 局部导航或动态 DOM 更新后的布局刷新。
 - 表单控件、按钮、标签页、表格、分页、提示框等基础控件状态。
 - 亮色、暗色、自动模式下的可读性和焦点状态。
 
@@ -181,6 +182,26 @@ node tools/static-server.js
 - 关闭菜单后再滚动。
 - 窗口从移动端宽度切回桌面宽度。
 
+### 9.1 动态 DOM 与局部更新
+
+本次新增公开刷新方法：
+
+```javascript
+window.ModernColorLayout.refresh();
+```
+
+普通静态页面首次加载时会自动执行，不需要额外调用。如果页面通过局部导航、模板替换或其他机制更新 DOM，应在新内容写入完成后调用 `refresh()`。
+
+`refresh()` 可以安全重复调用，会扫描新出现的菜单、子菜单和主题按钮，并通过元素初始化标记避免已有元素重复绑定。某个前端框架的生命周期事件应由项目适配脚本订阅，再从适配脚本调用 `refresh()`；不要把具体框架名称或全局对象直接写入 `modern-color-layout.js`。
+
+例如，项目已经提供统一的局部更新事件时：
+
+```javascript
+document.addEventListener("page:updated", function () {
+    window.ModernColorLayout.refresh();
+});
+```
+
 ## 10. 控件覆盖
 
 `index.html` 应持续覆盖常见 HTML 控件和状态，作为回归测试页面。
@@ -211,6 +232,7 @@ node tools/static-server.js
 - 删除只服务旧结构的 JS 分支。
 - 将重复控件样式提取为通用选择器。
 - 保持图标按钮、菜单按钮和表单控件尺寸稳定。
+- 将具体页面框架的生命周期监听留在独立适配脚本中。
 
 不要为了“看起来统一”删除必要的状态差异，例如 disabled、readonly、focus、invalid 应该有明确视觉区别。
 
@@ -227,4 +249,5 @@ node tools/static-server.js
 - `button.menu-item` 不显示成浏览器原生白色按钮。
 - 表单控件的正常、焦点、禁用、只读、校验状态都可读。
 - 日期和时间控件在暗色模式下图标可见。
+- 动态替换菜单或正文后调用 `ModernColorLayout.refresh()`，新元素交互有效且已有元素不会重复响应。
 - 文档和代码保持 UTF-8 BOM 与 CRLF。
