@@ -106,11 +106,11 @@ http://127.0.0.1:4173/
             </div>
             <a href="#overview" class="menu-item active"><i class="bi bi-house-door"></i>布局概览</a>
             <div class="menu-group">
-                <button class="menu-item menu-submenu-toggle" type="button">
+                <button class="menu-item menu-submenu-toggle" type="button" aria-controls="controls-submenu">
                     <span><i class="bi bi-ui-checks"></i>控件示例</span>
                     <i class="bi bi-chevron-down menu-submenu-arrow"></i>
                 </button>
-                <div class="menu-submenu">
+                <div id="controls-submenu" class="menu-submenu">
                     <a href="#forms" class="menu-item"><i class="bi bi-input-cursor"></i>表单控件</a>
                     <a href="#buttons" class="menu-item"><i class="bi bi-ui-checks-grid"></i>按钮控件</a>
                 </div>
@@ -150,18 +150,18 @@ http://127.0.0.1:4173/
 
 ```html
 <div class="menu-group">
-    <button class="menu-item menu-submenu-toggle" type="button">
+    <button class="menu-item menu-submenu-toggle" type="button" aria-controls="system-management-submenu">
         <span><i class="bi bi-folder"></i>系统管理</span>
         <i class="bi bi-chevron-down menu-submenu-arrow"></i>
     </button>
-    <div class="menu-submenu">
+    <div id="system-management-submenu" class="menu-submenu">
         <a href="/users" class="menu-item"><i class="bi bi-people"></i>用户管理</a>
         <a href="/roles" class="menu-item"><i class="bi bi-shield"></i>角色管理</a>
     </div>
 </div>
 ```
 
-脚本会自动补齐 `aria-controls`，维护 `aria-expanded`，并在子项带 `.active` 或 `aria-current="page"` 时自动展开父级子菜单。Blazor 中可直接把子项写成 `NavLink class="menu-item"`。
+脚本会自动补齐缺失的 `aria-controls` 和子菜单 `id`，维护 `aria-expanded`，并在子项带 `.active` 或 `aria-current="page"` 时自动展开父级子菜单。若菜单可能被前端框架、局部导航或模板替换重建，应显式提供应用内稳定且唯一的子菜单 `id`，并让按钮的 `aria-controls` 与之对应，脚本才能恢复此前的展开状态。不要让动态模板重复输出 `aria-expanded`、`.open` 或 `.child-active`；只标记真正命中的子菜单项。
 
 ## 动态 DOM 刷新
 

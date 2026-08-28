@@ -126,11 +126,11 @@ node tools/static-server.js
 
 ```html
 <div class="menu-group">
-    <button class="menu-item menu-submenu-toggle" type="button">
+    <button class="menu-item menu-submenu-toggle" type="button" aria-controls="system-management-submenu">
         <span><i class="bi bi-folder"></i>系统管理</span>
         <i class="bi bi-chevron-down menu-submenu-arrow"></i>
     </button>
-    <div class="menu-submenu">
+    <div id="system-management-submenu" class="menu-submenu">
         <a href="#users" class="menu-item"><i class="bi bi-people"></i>用户管理</a>
         <a href="#roles" class="menu-item"><i class="bi bi-shield"></i>角色管理</a>
     </div>
@@ -138,6 +138,8 @@ node tools/static-server.js
 ```
 
 只标记子项 `active` 或 `aria-current="page"`。脚本会负责父级展开、`aria-expanded`、`.menu-submenu.open` 和 `.child-active`。
+
+普通静态页面可以让脚本补齐缺失的子菜单 `id`。如果菜单会被局部导航或模板替换重建，应显式提供应用内稳定且唯一的 `id`，并让展开按钮的 `aria-controls` 与之对应，以便恢复此前的展开状态。不要让动态模板输出 `aria-expanded`、`.open` 或 `.child-active`；这些交互状态由脚本维护。
 
 不要在 `script.js` 中再写一套子菜单展开逻辑。
 
