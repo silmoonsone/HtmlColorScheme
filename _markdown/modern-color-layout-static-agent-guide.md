@@ -27,9 +27,11 @@
 - `js/script.js`：当前静态 demo 自己的脚本。不要把只能服务 demo 的行为混入核心脚本。
 - `tools/static-server.js`：本地静态开发服务器脚本。
 - `README.md`：给普通使用者看的项目说明。
-- `.markdown/modern-color-layout-static-agent-guide.md`：给 AI Agent 看的维护和使用说明，也就是本文。
+- `_markdown/modern-color-layout-static-agent-guide.md`：给 AI Agent 看的维护和使用说明，也就是本文。
 
 ## 3. 修改边界
+
+默认不要直接修改框架自带的 `css/modern-color-layout.css` 和 `js/modern-color-layout.js`。项目或页面定制应优先新增独立 CSS/JS，并在核心资源之后加载，通过样式覆盖、事件订阅或公开 API 扩展；只有确认外部扩展无法合理实现，而且需求属于框架通用能力时，才修改核心文件，并完成本文要求的全部回归检查。
 
 核心样式和脚本只放通用能力：
 
@@ -218,6 +220,8 @@ document.addEventListener("page:updated", function () {
 - tabs、alert、badge、progress、pagination、table。
 
 新增样式时，要优先复用已有变量和通用类。避免为了单个示例新增一次性颜色或一次性布局。
+
+普通按钮或按钮式链接只需使用 `class="btn"`，即可获得随主题变化的中性文字、背景和交互状态；`btn-sm`、`btn-lg` 可继续叠加。需要语义配色时添加 `btn-primary`、`btn-outline-primary` 等类。禁用按钮使用 `disabled`；禁用链接同时使用 `.disabled`、`aria-disabled="true"` 和 `tabindex="-1"`。
 
 ## 11. 代码整理原则
 

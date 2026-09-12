@@ -17,7 +17,7 @@ HtmlColorScheme/
 ├─ js/
 │  ├─ modern-color-layout.js
 │  └─ script.js
-├─ .markdown/
+├─ _markdown/
 │  └─ modern-color-layout-static-agent-guide.md
 └─ tools/
    └─ static-server.js
@@ -29,9 +29,11 @@ HtmlColorScheme/
 - `css/modern-color-layout.css`：主题变量、布局、Bootstrap 常用控件适配。
 - `js/modern-color-layout.js`：亮色、暗色、自动主题切换、移动端菜单交互、返回顶部按钮，以及面向动态 DOM 的可重复刷新能力。
 
+维护时应把 `modern-color-layout.css` 和 `modern-color-layout.js` 视为稳定的框架核心。项目或页面定制应优先新增独立 CSS/JS，并在核心资源之后加载，通过样式覆盖、事件订阅或公开 API 扩展；只有确认外部扩展无法合理实现，而且需求属于框架通用能力时，才直接修改核心文件，并完成完整回归检查。
+
 `colorDemo.html`、`css/style.css` 和 `js/script.js` 是旧的轻量颜色切换示例，保留用于对照，不是这套现代布局的主要入口。
 
-`.markdown/modern-color-layout-static-agent-guide.md` 是给 Codex 或其他 AI Agent 使用的维护说明，包含静态模板结构、修改边界和回归检查方法。
+`_markdown/modern-color-layout-static-agent-guide.md` 是给 Codex 或其他 AI Agent 使用的维护说明，包含静态模板结构、修改边界和回归检查方法。
 
 ## 依赖
 
@@ -259,6 +261,7 @@ modern-color-layout-theme
 - range 滑块、color 选择。
 - input-group。
 - primary、outline、secondary、success、warning、danger、info、link 按钮。
+- 仅使用 `.btn` 的默认按钮和链接，包含悬停、焦点、激活和禁用状态。
 - 按钮组、禁用按钮、激活按钮。
 - nav-tabs，包括激活、悬停、焦点、禁用。
 - dropdown，包括激活、悬停、禁用。
