@@ -13,6 +13,7 @@ HtmlColorScheme/
 ├─ colorDemo.html
 ├─ css/
 │  ├─ modern-color-layout.css
+│  ├─ site.css
 │  └─ style.css
 ├─ js/
 │  ├─ modern-color-layout.js
@@ -30,6 +31,8 @@ HtmlColorScheme/
 - `js/modern-color-layout.js`：亮色、暗色、自动主题切换、移动端菜单交互、返回顶部按钮，以及面向动态 DOM 的可重复刷新能力。
 
 维护时应把 `modern-color-layout.css` 和 `modern-color-layout.js` 视为稳定的框架核心。项目或页面定制应优先新增独立 CSS/JS，并在核心资源之后加载，通过样式覆盖、事件订阅或公开 API 扩展；只有确认外部扩展无法合理实现，而且需求属于框架通用能力时，才直接修改核心文件，并完成完整回归检查。
+
+`css/site.css` 是当前站点自己的扩展样式，加载在核心样式之后。它配合页面入口中的 viewport 设置保留单指滚动，同时禁止手机浏览器双指缩放和双击放大；这类站点策略不属于现代颜色核心文件。
 
 `colorDemo.html`、`css/style.css` 和 `js/script.js` 是旧的轻量颜色切换示例，保留用于对照，不是这套现代布局的主要入口。
 

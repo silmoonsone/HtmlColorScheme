@@ -23,6 +23,7 @@
 - `colorDemo.html`：颜色切换或颜色方案的辅助示例页，属于次要 demo。
 - `css/modern-color-layout.css`：现代颜色布局的核心样式，包含主题变量、页面布局、菜单、控件状态、表格、响应式和移动端菜单样式。
 - `js/modern-color-layout.js`：现代颜色布局的核心脚本，包含主题切换、移动端菜单定位、菜单激活、子菜单展开、重复初始化保护和可重复调用的 `ModernColorLayout.refresh()`。
+- `css/site.css`：当前站点自己的扩展样式，负责手机端触摸缩放策略，不属于现代颜色核心样式。
 - `css/style.css`：当前静态 demo 自己的页面样式。不要把只能服务 demo 的样式混入核心样式。
 - `js/script.js`：当前静态 demo 自己的脚本。不要把只能服务 demo 的行为混入核心脚本。
 - `tools/static-server.js`：本地静态开发服务器脚本。
@@ -51,6 +52,8 @@
 - 只服务 demo 展示的临时效果。
 
 这类内容应放在页面 HTML、`css/style.css` 或 `js/script.js` 中。
+
+当前两个 HTML 入口通过 viewport 的 `minimum-scale=1.0`、`maximum-scale=1.0` 和 `user-scalable=no` 禁止页面缩放，再由 `css/site.css` 的 `touch-action: pan-x pan-y` 保留单指滚动并抑制双指缩放和双击放大。若调整这项站点策略，应修改入口 HTML 和 `css/site.css`，不要修改 `css/modern-color-layout.css` 或添加重复的触摸事件脚本。
 
 ## 4. 依赖和运行
 
